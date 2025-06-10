@@ -1,0 +1,19 @@
+*{
+    padding: none;
+    margin: none;
+    box-sizing: border-box;
+}
+html{
+    overflow: hidden;
+}
+body{
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+.game-canvas{
+    background-color: rgb(51, 52, 70);
+}

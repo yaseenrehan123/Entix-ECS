@@ -1,0 +1,1 @@
+export type UnitShapeType = 'rect' | 'circle';

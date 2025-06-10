@@ -1,0 +1,25 @@
+{
+  "name": "entix-ecs",
+  "version": "0.0.1",
+  "description": "A Class based ECS Package.",
+  "main": "dist/entityManager.js",
+  "types": "dist/entityManager.d.ts", 
+  "scripts": {
+     "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yaseenrehan123/Entix-ECS.git"
+  },
+  "keywords": [
+    "ECS",
+    "Entities",
+    "Gamedev"
+  ],
+  "author": "magstardev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yaseenrehan123/Entix-ECS/issues"
+  },
+  "homepage": "https://github.com/yaseenrehan123/Entix-ECS#readme"
+}

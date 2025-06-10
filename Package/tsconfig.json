@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+   "strict": true,
+   "noImplicitAny": true,
+   "esModuleInterop": true,
+   "strictNullChecks": true,
+   "target": "esnext",
+   "moduleResolution": "node",
+   "module": "esnext",
+   "declaration": true,
+   "isolatedModules": true,
+   "noEmitOnError": true,
+   "outDir": "dist"
+  },
+  "include":["src"],
+  "exclude": ["node_modules"]
+}
