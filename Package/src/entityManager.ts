@@ -71,6 +71,9 @@ export class EntityManager {// A class to manage all the entities
             if (shouldCall) callback(entity, matched);
         }
     };
+    getAllEntities():EntityId[]{
+        return this.entities;
+    }
     private ensureEntityExists(id: EntityId) {
         if (!this.entities.includes(id)) throw new Error(`Entity ${id} does not exist!`);
     };
