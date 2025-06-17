@@ -1,4 +1,4 @@
-import { EntityManager } from "entix";
+import { EntityManager } from "entix-ecs";
 import { Game } from "../game";
 import { Position } from "../components/generalComponents";
 import { Text } from "../components/textComponents";
@@ -13,7 +13,7 @@ export function textRenderingSystem(game:Game){
     },(id,{pos,text})=>{
 
         ctx.save();
-
+     
         ctx.beginPath();
 
         ctx.font = `${text.size}px sans-serif`;

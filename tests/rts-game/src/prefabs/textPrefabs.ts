@@ -1,4 +1,4 @@
-import { EntityId, EntityManager } from "entix";
+import { EntityId, EntityManager } from "entix-ecs";
 import { Game } from "../game";
 import { SpawnedPos } from "../interfaces";
 import { Text } from "../components/textComponents";

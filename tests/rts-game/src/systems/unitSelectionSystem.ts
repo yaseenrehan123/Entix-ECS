@@ -1,4 +1,4 @@
-import { EntityManager } from "entix";
+import { EntityManager } from "entix-ecs";
 import { Game } from "../game.ts";
 import { UnitSelectionRect } from "../other/unitSelectionRect.ts";
 import { Unit, UnitSelected } from "../components/unitComponents.ts";

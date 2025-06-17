@@ -1,5 +1,5 @@
-import { EntityManager } from "entix";
-import type { EntityId } from "entix";
+import { EntityManager } from "entix-ecs";
+import type { EntityId } from "entix-ecs";
 import { Game } from "../game";
 import { Position } from "../components/generalComponents";
 import { UnitVisuals,UnitRectVisual,UnitMover,UnitSelected,Unit, UnitCircleVisual } from "../components/unitComponents";

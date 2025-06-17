@@ -1,4 +1,4 @@
-import { EntityManager } from "entix";
+import { EntityManager } from "entix-ecs";
 import { Game } from "../game";
 import { Input } from "../other/input";
 import { UnitMover, UnitSelected } from "../components/unitComponents";

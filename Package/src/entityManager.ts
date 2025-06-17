@@ -46,13 +46,13 @@ export class EntityManager {// A class to manage all the entities
         this.entities = this.entities.filter(e => e !== id);
         this.componentMap.delete(id);
     };
-    query(
+    query<T extends Record<string,ComponentClass<any>>>(
         filterType: Query,
-        componentsToMatch: Record<string, ComponentClass<any>>,
-        callback: (id: EntityId, matched: Record<string, any>) => void
+        componentsToMatch: T,
+        callback: (id: EntityId, matched: {[K in keyof T]:InstanceType<T[K]>}) => void
     ) {
         for (const entity of this.entities) {
-            const matched: Record<string, any> = {};
+            const matched = {} as {[K in keyof T]: InstanceType<T[K]>};
             const results: boolean[] = [];
 
             for (const key in componentsToMatch) {

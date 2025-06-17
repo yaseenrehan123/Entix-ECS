@@ -1,4 +1,4 @@
-import { EntityManager } from "entix";
+import { EntityManager } from "entix-ecs";
 import { Game } from "../game.ts";
 import { Position } from "../components/generalComponents.ts";
 import { UnitMover } from "../components/unitComponents.ts";
