@@ -1,5 +1,5 @@
 export type EntityId = number;// A entityId type
-type ComponentClass<T> = new (...args: any[]) => T
+export type ComponentClass<T> = new (...args: any[]) => T
 type Query = 'All' | 'Any' | 'None';
 
 export class EntityManager {// A class to manage all the entities

@@ -60,8 +60,8 @@ export function unitRenderingSystem(game: Game) {
                 ctx.fill();
 
                 if (unitSelected.enabled) {// draw outline if it's selected
-                    ctx.strokeStyle = unitSelected.selectedOutlineColor;
-                    ctx.lineWidth = unitSelected.selectedOutlineWidth;
+                    ctx.strokeStyle = unitVisuals.selectedOutlineColor;
+                    ctx.lineWidth = unitVisuals.selectedOutlineWidth;
 
                     ctx.beginPath();
                     ctx.arc(x,y,r,0,Math.PI * 2);
