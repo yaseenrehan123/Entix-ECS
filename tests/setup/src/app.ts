@@ -25,7 +25,9 @@ if(!position) throw new Error("POSITION NOT FOUND ON ENTITY!");
 position.x = 500;
 
 console.log(position);
-
+if(em.hasEntity(entity)){
+    console.log("HAS ENTITY WORKS FINE!");
+}
 requestAnimationFrame(update.bind(this));
 
 

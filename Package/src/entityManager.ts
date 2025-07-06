@@ -16,33 +16,37 @@ export class EntityManager {// A class to manage all the entities
     };
     addComponent<T>(id: EntityId, componentClass: ComponentClass<T>, componentInstance: T) {/* adds a component to entity,
         doenst add a already added*/
-        this.ensureEntityExists(id);
+         if (!this.hasEntity(id)) throw new Error(`Entity ${id} does not exist!`);
         const components = this.componentMap.get(id);
         if (!components?.has(componentClass)) {
             components?.set(componentClass, componentInstance);
         }
     };
     removeComponent<T>(id: EntityId, componentClass: ComponentClass<T>) {//removes a component from entity
-        this.ensureEntityExists(id);
+         if (!this.hasEntity(id)) throw new Error(`Entity ${id} does not exist!`);
         const components = this.componentMap.get(id);
         if (components?.has(componentClass)) {
             components.delete(componentClass);
         }
     };
     getComponent<T>(id: EntityId, componentClass: ComponentClass<T>): T | undefined {// used to get a component
-        this.ensureEntityExists(id);
+         if (!this.hasEntity(id)) throw new Error(`Entity ${id} does not exist!`);
         const components = this.componentMap.get(id);
         const requestedComponent = components?.get(componentClass) as T | undefined;
         return requestedComponent;
     };
     getAllComponents(id: EntityId): any[] {
-        this.ensureEntityExists(id);
+         if (!this.hasEntity(id)) throw new Error(`Entity ${id} does not exist!`);
         const components = this.componentMap.get(id);
         if (!components) return [];
         return Array.from(components.values());
     };
+    hasComponent<T>(id:EntityId,componentClass:ComponentClass<T>):boolean {
+         if (!this.hasEntity(id)) throw new Error(`Entity ${id} does not exist!`);
+        return this.componentMap.get(id)?.has(componentClass) ?? false;
+    };
     removeEntity(id: EntityId) {
-        this.ensureEntityExists(id);
+         if (!this.hasEntity(id)) throw new Error(`Entity ${id} does not exist!`);
         this.entities = this.entities.filter(e => e !== id);
         this.componentMap.delete(id);
     };
@@ -51,7 +55,10 @@ export class EntityManager {// A class to manage all the entities
         componentsToMatch: T,
         callback: (id: EntityId, matched: {[K in keyof T]:InstanceType<T[K]>}) => void
     ) {
-        for (const entity of this.entities) {
+        const entitiesSnapshot = [...this.entities];
+
+        for (const entity of entitiesSnapshot) {
+            if(!this.hasEntity(entity)) continue;
             const matched = {} as {[K in keyof T]: InstanceType<T[K]>};
             const results: boolean[] = [];
 
@@ -73,9 +80,10 @@ export class EntityManager {// A class to manage all the entities
     };
     getAllEntities():EntityId[]{
         return this.entities;
-    }
-    private ensureEntityExists(id: EntityId) {
-        if (!this.entities.includes(id)) throw new Error(`Entity ${id} does not exist!`);
+    };
+    hasEntity(id:EntityId):boolean{
+        if(this.entities.includes(id)) return true;
+        return false;
     };
 
 };
