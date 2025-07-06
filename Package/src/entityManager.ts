@@ -14,7 +14,7 @@ export class EntityManager {// A class to manage all the entities
         this.entityCount++;
         return id;
     };
-    addComponent<T>(id: EntityId, componentClass: ComponentClass<T>, componentInstance: T) {/* adds a component to entity,
+    addComponent<T>(id: EntityId, componentClass: ComponentClass<T>, componentInstance: T):void {/* adds a component to entity,
         doenst add a already added*/
          if (!this.hasEntity(id)) throw new Error(`Entity ${id} does not exist!`);
         const components = this.componentMap.get(id);
@@ -22,17 +22,23 @@ export class EntityManager {// A class to manage all the entities
             components?.set(componentClass, componentInstance);
         }
     };
-    removeComponent<T>(id: EntityId, componentClass: ComponentClass<T>) {//removes a component from entity
+    removeComponent<T>(id: EntityId, componentClass: ComponentClass<T>):void {//removes a component from entity
          if (!this.hasEntity(id)) throw new Error(`Entity ${id} does not exist!`);
         const components = this.componentMap.get(id);
         if (components?.has(componentClass)) {
             components.delete(componentClass);
         }
     };
-    getComponent<T>(id: EntityId, componentClass: ComponentClass<T>): T | undefined {// used to get a component
+    getComponent<T>(id: EntityId, componentClass: ComponentClass<T>): T | undefined;
+    getComponent<T>(id: EntityId, componentClass: ComponentClass<T>,strict:true): T;
+    getComponent<T>(id: EntityId, componentClass: ComponentClass<T>,strict:false): T | undefined;
+    getComponent<T>(id: EntityId, componentClass: ComponentClass<T>,strict?:boolean): T | undefined {// used to get a component
          if (!this.hasEntity(id)) throw new Error(`Entity ${id} does not exist!`);
         const components = this.componentMap.get(id);
         const requestedComponent = components?.get(componentClass) as T | undefined;
+        if(strict && !requestedComponent){
+            throw new Error(`'${componentClass.name}'` + ' COMPONENT NOT FOUND ON ENTITY: ' + id);
+        }
         return requestedComponent;
     };
     getAllComponents(id: EntityId): any[] {
